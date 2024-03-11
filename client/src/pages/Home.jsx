@@ -2,7 +2,7 @@ import React from "react";
 
 function Home() {
   return (
-    <div>
+    <div className="bg-white dark:bg-gray-900 border-b border-gray-200 dark:border-gray-600 text-white">
       <form>
         <label>Title</label>
         <input type="text" />
