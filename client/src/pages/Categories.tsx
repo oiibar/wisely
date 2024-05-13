@@ -58,7 +58,7 @@ const Categories: FC = () => {
               className="group py-2 px-4 rounded-lg bg-blue-600 flex items-center relative gap-2"
             >
               {category.title}
-              <div className="absolute px-3 left-0 top-0 bottom-0 right-0 flex hidden rounded-lg bg-black/90 items-center justify-between group-hover:flex">
+              <div className="absolute px-3 left-0 top-0 bottom-0 right-0 hidden flex rounded-lg bg-black/90 items-center justify-between group-hover:flex">
                 <button
                   onClick={() => {
                     setVisible(true);
