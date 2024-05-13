@@ -34,7 +34,7 @@ const Auth: FC = () => {
       if (data) {
         setToken("token", data.token);
         dispatch(login(data));
-        toast.success("Loged in successfully");
+        toast.success("Logged in successfully");
         navigate("/");
       }
     } catch (err: any) {
