@@ -1,17 +1,29 @@
 import { FC } from "react";
 import TransactionForm from "../components/TransactionForm";
 import { instance } from "../api/axios.api";
-import { Category } from "../types/types";
+import {
+  Category,
+  ResponseTransactionLoader,
+  Transaction,
+} from "../types/types";
 import { toast } from "react-toastify";
 import TransactionTable from "../components/TransactionTable";
+import { useLoaderData } from "react-router-dom";
+import { formatCurrency } from "../helpers/currency.helper";
+import Chart from "../components/Chart";
 
 export const TransactionLoader = async () => {
   const categories = await instance.get<Category[]>("/categories");
-  const transactions = await instance.get("/transactions");
+  const transactions = await instance.get<Transaction[]>("/transactions");
+  const totalIncome = await instance.get<number>("/transactions/income/find");
+  const totalExpense = await instance.get<number>("/transactions/expense/find");
+  console.log(totalIncome, totalExpense);
 
   const data = {
     categories: categories.data,
     transactions: transactions.data,
+    totalIncome: totalIncome.data,
+    totalExpense: totalExpense.data,
   };
 
   return data;
@@ -42,6 +54,8 @@ export const TransactionAction = async ({ request }: any) => {
 };
 
 const Transactions: FC = () => {
+  const { totalExpense, totalIncome } =
+    useLoaderData() as ResponseTransactionLoader;
   return (
     <>
       <div className="grid grid-cols-3 gap-4 mt-4 items-start">
@@ -55,7 +69,7 @@ const Transactions: FC = () => {
                 Total Income:
               </p>
               <p className="bg-green-600 p-1 rounded-sm text-center mt-2">
-                1000$
+                {formatCurrency.format(totalIncome)}
               </p>
             </div>
             <div>
@@ -63,16 +77,18 @@ const Transactions: FC = () => {
                 Total Expense:
               </p>
               <p className="bg-red-600 p-1 rounded-sm text-center mt-2">
-                1000$
+                {formatCurrency.format(totalExpense)}
               </p>
             </div>
           </div>
-          <>Chart</>
+          <>
+            <Chart totalExpense={totalExpense} totalIncome={totalIncome} />
+          </>
         </div>
       </div>
 
       <h1 className="my-5">
-        <TransactionTable />
+        <TransactionTable limit={5} />
       </h1>
     </>
   );

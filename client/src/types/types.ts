@@ -33,6 +33,8 @@ export interface Category {
 export interface ResponseTransactionLoader {
   categories: Category[];
   transactions: Transaction[];
+  totalIncome: number;
+  totalExpense: number;
 }
 
 export interface Transaction {
