@@ -3,11 +3,15 @@ import TransactionForm from "../components/TransactionForm";
 import { instance } from "../api/axios.api";
 import { Category } from "../types/types";
 import { toast } from "react-toastify";
+import TransactionTable from "../components/TransactionTable";
 
 export const TransactionLoader = async () => {
   const categories = await instance.get<Category[]>("/categories");
+  const transactions = await instance.get("/transactions");
+
   const data = {
     categories: categories.data,
+    transactions: transactions.data,
   };
 
   return data;
@@ -28,6 +32,11 @@ export const TransactionAction = async ({ request }: any) => {
       return null;
     }
     case "DELETE": {
+      const formData = await request.formData();
+      const transactionId = formData.get("id");
+      await instance.delete(`/transactions/transaction/${transactionId}`);
+      toast.success("Deleted successfully");
+      return null;
     }
   }
 };
@@ -62,7 +71,9 @@ const Transactions: FC = () => {
         </div>
       </div>
 
-      <h1 className="my-5">Table</h1>
+      <h1 className="my-5">
+        <TransactionTable />
+      </h1>
     </>
   );
 };

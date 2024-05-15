@@ -27,9 +27,20 @@ export interface Category {
   id: number;
   createdAt: string;
   updatedAt: string;
-  transactions: [];
+  transactions?: [];
 }
 
 export interface ResponseTransactionLoader {
   categories: Category[];
+  transactions: Transaction[];
+}
+
+export interface Transaction {
+  id: number;
+  amount: number;
+  title: string;
+  type: string;
+  category: Category;
+  created_at: string;
+  updated_at: string;
 }
