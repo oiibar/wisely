@@ -1,5 +1,36 @@
 import { FC } from "react";
 import TransactionForm from "../components/TransactionForm";
+import { instance } from "../api/axios.api";
+import { Category } from "../types/types";
+import { toast } from "react-toastify";
+
+export const TransactionLoader = async () => {
+  const categories = await instance.get<Category[]>("/categories");
+  const data = {
+    categories: categories.data,
+  };
+
+  return data;
+};
+
+export const TransactionAction = async ({ request }: any) => {
+  switch (request.method) {
+    case "POST": {
+      const formData = await request.formData();
+      const newTransaction = {
+        title: formData.get("title"),
+        amount: +formData.get("amount"),
+        category: formData.get("category"),
+        type: formData.get("type"),
+      };
+      await instance.post("/transactions", newTransaction);
+      toast.success("Transaction added successfully");
+      return null;
+    }
+    case "DELETE": {
+    }
+  }
+};
 
 const Transactions: FC = () => {
   return (

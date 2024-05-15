@@ -29,3 +29,7 @@ export interface Category {
   updatedAt: string;
   transactions: [];
 }
+
+export interface ResponseTransactionLoader {
+  categories: Category[];
+}
