@@ -71,6 +71,7 @@ Technologies used in the project:
 *   PostgreSQL
 *   Rechart
 *   RESTful API
+*   Redux Toolkit
 
 
 <h2>💖Like my work?</h2>
