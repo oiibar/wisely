@@ -8,6 +8,7 @@ import { AuthModule } from './auth/auth.module';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import * as fs from 'fs';
+import * as path from 'path';
 
 @Module({
   imports: [
@@ -29,7 +30,7 @@ import * as fs from 'fs';
         synchronize: true,
         ssl: {
           rejectUnauthorized: true,
-          ca: fs.readFileSync('./ca.pem').toString(),
+          ca: fs.readFileSync(path.resolve(__dirname, './ca.pem')).toString(),
         },
         entities: [__dirname + '/**/*.entity{.js, .ts}'],
       }),
