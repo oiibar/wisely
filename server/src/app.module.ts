@@ -30,7 +30,7 @@ import * as path from 'path';
         synchronize: true,
         ssl: {
           rejectUnauthorized: true,
-          ca: fs.readFileSync(path.resolve(__dirname, './ca.pem')).toString(),
+          ca: fs.readFileSync('src/ca.pem').toString(),
         },
         entities: [__dirname + '/**/*.entity{.js, .ts}'],
       }),
