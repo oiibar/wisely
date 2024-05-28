@@ -7,6 +7,7 @@ import { TransactionModule } from './transaction/transaction.module';
 import { AuthModule } from './auth/auth.module';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 import { TypeOrmModule } from '@nestjs/typeorm';
+import * as fs from 'fs';
 
 @Module({
   imports: [
@@ -26,6 +27,10 @@ import { TypeOrmModule } from '@nestjs/typeorm';
         password: configService.get('DB_PASSWORD'),
         database: configService.get('DB_NAME'),
         synchronize: true,
+        ssl: {
+          rejectUnauthorized: true,
+          ca: fs.readFileSync('./certificate/ca.pem').toString(),
+        },
         entities: [__dirname + '/**/*.entity{.js, .ts}'],
       }),
     }),
