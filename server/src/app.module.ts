@@ -29,7 +29,7 @@ import * as fs from 'fs';
         synchronize: true,
         ssl: {
           rejectUnauthorized: true,
-          ca: fs.readFileSync('./certificate/ca.pem').toString(),
+          ca: fs.readFileSync('./ca.pem').toString(),
         },
         entities: [__dirname + '/**/*.entity{.js, .ts}'],
       }),
