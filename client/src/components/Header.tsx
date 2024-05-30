@@ -21,10 +21,6 @@ const Header: FC = () => {
 
   return (
     <header className="flex items-center p-4 shadow-sm bg-slate-800 backdrop-blur-sm">
-      <Link to="/">
-        <FaBtc size={20} />
-      </Link>
-
       {isAuth && (
         <nav className="ml-auto mr-10">
           <ul className="flex items-center gap-5">
