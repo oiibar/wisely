@@ -7,8 +7,7 @@ const Home: FC = () => {
     <div className="flex flex-col gap-3 mt-10 items-center justify-center text-center">
       <SiNintendogamecube size={200} />
       <p className="text-2xl">
-        It's a professional timing program designed for Rubik's cube
-        speedsolvers
+        It's a user-friendly budget tracker web app
       </p>
       <Link to={"transactions"} className="py-2 text-white/50 hover:text-white">
         <button className="btn btn-green text-md">Get Started</button>
