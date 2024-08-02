@@ -74,6 +74,9 @@ Technologies used in the project:
 *   RESTful API
 *   Redux Toolkit
 
+<p>Here are some previews: </p>
+
+<img src="./wisely.png" alt="Screenshot">
 
 <h2>💖Like my work?</h2>
 
