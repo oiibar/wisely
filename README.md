@@ -70,6 +70,7 @@ Technologies used in the project:
 *   TypeScript
 *   PostgreSQL
 *   Rechart
+*   TailwindCSS
 *   RESTful API
 *   Redux Toolkit
 
